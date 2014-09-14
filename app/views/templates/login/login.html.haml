@@ -1,0 +1,21 @@
+.container
+  .form.login
+    %form{:role => "form", "ng-submit" => "submit(user)", :name => "loginForm"}
+      .form-group.header
+        %h1 Administrator Login
+
+      .form-group.item
+        %label{:for => "email"} Email address
+        %input#email.form-control{:placeholder => "Enter email", :type => "email", "ng-model" => "user.email"}/
+
+      .form-group.item
+        %label{:for => "password"} Password
+        %input#password.form-control{:placeholder => "Password", :type => "password", "ng-model" => "user.password"}/
+
+      .checkbox
+        %label
+          %input{:type => "checkbox", "ng-model" => "user.remember"}/
+          Remember me
+
+      .footer
+        %button.btn.btn-default{:type => "submit"} Login

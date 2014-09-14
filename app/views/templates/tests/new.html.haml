@@ -1,0 +1,8 @@
+%div{ "main-header" => "", "item" => "2" }
+
+.container
+  .my-control
+    .form.newTest
+      %form{:role => "form", :name => "newTestsForm", "ng-submit" => "saveTest(test)"}
+        %div{"ng-include" => "'tests/partials/button.html'"}
+        %div{"ng-include" => "'tests/partials/questions.html'"}

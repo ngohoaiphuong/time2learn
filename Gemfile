@@ -12,11 +12,8 @@ gem 'sqlite3'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
+  gem 'bootstrap-sass-rails', '~> 2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -36,3 +33,9 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+# add more gems for application
+gem 'bower-rails'
+gem 'angular-rails-templates'
+gem 'haml'
+

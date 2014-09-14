@@ -1,0 +1,28 @@
+@import '../partials/color';
+
+.navbar-header { 
+  width: 100%;
+
+  #mainHeaderTitle {
+    font-weight: bold;
+  }
+
+  ul {
+    li {
+      width: 100px;
+      text-align: center;
+      border-right: 1px solid $line-border;
+      cursor: pointer;
+
+      &:last-child {
+        border-right: none;
+      }
+
+      border-bottom: none;
+
+      &.li-select {
+        border-bottom: 3px solid blue;
+      }
+    }
+  }
+}

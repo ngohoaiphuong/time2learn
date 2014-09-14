@@ -1,0 +1,22 @@
+.form-group.item
+  %input.form-control.options{:placeholder => "Give the question a label here ...", :type => "text", "ng-model" => "question.question", :required => "" }
+  %button.btn.btn-large.btn-default.btnDeleteQuestion{ :type => "button", "ng-click" => "removeQuestion($index)" }
+    %span.glyphicon.glyphicon-trash.blue
+
+.form-group.item
+  %textarea.form-control.alone{:placeholder => "Enter a description here ...", :type => "text", "ng-model" => "question.description", :required => "" }
+
+%ol
+  .option-lists{"ng-repeat" => "option in question.options"}
+    %li 
+      .item
+        %input{:placeholder => "Give the option a label here ...", :type => "text", "ng-model" => "option.option"}
+        %label
+          %input{:type => "checkbox", "ng-model" => "option.answer"}
+          Correct answer
+        %button.btn.btn-large.btn-default{ :type => "button", "ng-click" => "removeOption(question, $index)" }
+          %span.glyphicon.glyphicon-trash.blue
+
+%button.btn.btn-large.btn-default#btnCreateOption{ :type => "button", "ng-click" => "addOption(question.options)" }
+  %span.glyphicon.glyphicon-plus.blue
+  Option

@@ -1,0 +1,11 @@
+.form-group.item
+  %label{:for => "name"} Name
+  %input#name.form-control{:placeholder => "Give the test a name here ...", :type => "text", "ng-model" => "test.name", :required => "" }
+
+.form-group.item
+  %label{:for => "description"} Description
+  %textarea#description.form-control.addMorespace{:placeholder => "Enter a description here ...", :type => "text", "ng-model" => "test.description"}
+
+.question-lists{"ng-repeat" => "question in tests.questions"}
+  .line-separator
+  %div{"ng-include" => "'tests/partials/options.html'"}

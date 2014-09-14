@@ -1,0 +1,12 @@
+@import '../partials/color';
+
+.btnDeleteQuestion, #btnCreateQuestion {
+  float: right;
+  margin-right: 15px;
+}
+
+#btnCreateOption {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: -30px;
+}

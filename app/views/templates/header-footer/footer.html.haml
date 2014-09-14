@@ -1,0 +1,11 @@
+%nav.navbar.navbar-default.navbar-fixed-bottom{:role => "navigation"}
+  .container-fluid
+    .navbar-header
+      %a.navbar-brand#mainHeaderTitle{:href => "#/"} Time to learn
+      %ul.nav.navbar-nav.navbar-right
+        %li{ "ng-class" => "appliedClass(1)" }
+          %a{:href => "{{ linkUser }}"} Users
+        %li{ "ng-class" => "appliedClass(2)" }
+          %a{:href => "{{ linkTests }}"} Tests
+        %li{ "ng-class" => "appliedClass(3)" }
+          %a{:href => "{{ linkLogout }}"} Logout

@@ -1,0 +1,29 @@
+%div{ "main-header" => "", "item" => "1" }
+.container
+  .my-control
+    %button.btn.btn-large.btn-default#btnComeBack{ :type => "submit", "ng-click" => "comeBack()" }
+      %span.glyphicon.glyphicon-arrow-left.blue
+      Back
+
+    %button.btn.btn-large.btn-default#btnSaveUser{ :type => "submit", "ng-click" => "saveUser()" }
+      %span.glyphicon.glyphicon-floppy-save.blue
+      Save
+
+    .form.newUser
+      %form{:role => "form", :name => "newUserForm"}
+        .form-group.item
+          %label{:for => "email"} Email address
+          %input#email.form-control{:placeholder => "Enter email", :type => "email", "ng-model" => "user.email"}/
+
+        .form-group.item
+          %label{:for => "password"} Password
+          %input#password.form-control{:placeholder => "Password", :type => "password", "ng-model" => "user.password"}/
+
+        .form-group.item
+          %label{:for => "confirm-password"} Confirm Password
+          %input#confirm-password.form-control{:placeholder => "Confirm Password", :type => "password", "ng-model" => "user.confirm"}/
+
+        .form-group.item
+          %label{:for => "role"} Role
+          %select.form-control{"ng-model" => "user.role"}
+            %option{"ng-repeat" => "role in roles"} {{ role }}

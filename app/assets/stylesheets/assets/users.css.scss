@@ -1,0 +1,38 @@
+@import '../partials/color';
+
+.blue {
+  color: blue;
+}
+
+.lists {
+  padding-top: 15px;
+}
+
+.table {
+  thead {
+    tr {
+      background: $line-border;
+    }
+  }
+
+  tbody {   
+    cursor: pointer; 
+    tr {
+      th {
+        a {
+          &:first-child{
+            padding-right: 10px;      
+          }
+        }
+      }
+    }
+  }
+}
+
+#btnComeBack {
+  margin-left: 10px;
+}
+
+#btnSaveUser {
+  margin-left: 5px;
+}

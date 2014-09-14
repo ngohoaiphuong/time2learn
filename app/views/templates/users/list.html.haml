@@ -1,0 +1,36 @@
+%div{ "main-header" => "", "item" => "1" }
+.container
+  .my-control
+    %button.btn.btn-large.btn-default#btnNewUser{ :type => "submit", "ng-click" => "createUser()" }
+      %span.glyphicon.glyphicon-plus.blue
+      New User
+    .lists
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Name
+            %th Email
+            %th Role
+            %th Actions
+        %tbody
+          %tr
+            %th John Doe
+            %th johndoe@example.com
+            %th Student
+            %th 
+              %a{ :href => '#/users/1/edit' } Edit
+              %a{ :href => '/edit' } Delete            
+          %tr
+            %th John Doe
+            %th johndoe@example.com
+            %th Student
+            %th 
+              %a{ :href => '/edit' } Edit
+              %a{ :href => '/edit' } Delete            
+          %tr
+            %th John Doe
+            %th johndoe@example.com
+            %th Student
+            %th 
+              %a{ :href => '/edit' } Edit
+              %a{ :href => '/edit' } Delete                                    
