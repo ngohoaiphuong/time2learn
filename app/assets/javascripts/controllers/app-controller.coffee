@@ -9,7 +9,7 @@ angular.module 'controllers',[]
       $scope.submit = (user) ->
         console.log user
         console.log 'welcome from submit'
-        $location.path '/users'
+        # $location.path '/users'
   ]
   .controller 'mainCtrl', ['$scope', '$location'
     ($scope, $location) ->

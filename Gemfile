@@ -38,4 +38,4 @@ gem 'jquery-rails'
 gem 'bower-rails'
 gem 'angular-rails-templates'
 gem 'haml'
-
+gem 'devise'
