@@ -1,29 +1,47 @@
 %div{ "main-header" => "", "item" => "1" }
+%div{ "flash-message" => ""}
 .container
   .my-control
-    %button.btn.btn-large.btn-default#btnComeBack{ :type => "submit", "ng-click" => "comeBack()" }
-      %span.glyphicon.glyphicon-arrow-left.blue
-      Back
-
-    %button.btn.btn-large.btn-default#btnSaveUser{ :type => "submit", "ng-click" => "saveUser()" }
-      %span.glyphicon.glyphicon-floppy-save.blue
-      Save
-
     .form.newUser
-      %form{:role => "form", :name => "newUserForm"}
+      %form{:role => "form", :name => "newUserForm", :novalidate => "", "ng-submit" => "saveUser(user)"}
+        %button.btn.btn-large.btn-default#btnComeBack{ :type => "submit", "ng-click" => "comeBack()" }
+          %span.glyphicon.glyphicon-arrow-left.blue
+          Back
+
+        %button.btn.btn-large.btn-default#btnSaveUser{ :type => "submit" }
+          %span.glyphicon.glyphicon-floppy-save.blue
+          Save
+
+        .form-group.item
+          %label{:for => "username"} Username
+          %input#username.form-control{:method => "POST", :name => "username", :placeholder => "Enter Username", :type => "text", "ng-model" => "user.username", :required => "true", "event-valid-empty" => "blur", "event-update-status" => "keyup"}
+          .custom-error{"ng-show" => "newUserForm.username.$dirty && newUserForm.username.$invalid"} 
+            Invalid:
+            %span{"ng-show" => "newUserForm.username.$error.required"} Username is required.
+
         .form-group.item
           %label{:for => "email"} Email address
-          %input#email.form-control{:placeholder => "Enter email", :type => "email", "ng-model" => "user.email"}/
+          %input#email.form-control{:name => "email", :placeholder => "Enter email", :type => "email", "ng-model" => "user.email", :require => "true", "event-valid-email" => "blur"}
+          .custom-error{"ng-show" => "newUserForm.email.$dirty && newUserForm.email.$invalid"} 
+            Invalid:
+            %span{"ng-show" => "newUserForm.email.$error.required"} Email is required.
+            %span{"ng-show" => "newUserForm.email.$error.email"} Please, write a valid email address.
 
         .form-group.item
           %label{:for => "password"} Password
-          %input#password.form-control{:placeholder => "Password", :type => "password", "ng-model" => "user.password"}/
+          %input#password.form-control{:name => "password", :placeholder => "Password", :type => "password", "ng-model" => "user.password", "ng-keyup" => "onUpdatePassword()"}
 
         .form-group.item
           %label{:for => "confirm-password"} Confirm Password
-          %input#confirm-password.form-control{:placeholder => "Confirm Password", :type => "password", "ng-model" => "user.confirm"}/
+          %input#confirm-password.form-control{:name => "confirm", :placeholder => "Confirm Password", :type => "password", "ng-model" => "user.password_confirmation", "ng-keyup" => "onUpdatePassword()"}
+          .custom-error{"ng-show" => "!validScope.password"} 
+            Invalid:
+            %span{"ng-show" => "!validScope.password"} Password is not match.
 
         .form-group.item
           %label{:for => "role"} Role
-          %select.form-control{"ng-model" => "user.role"}
+          %select.form-control{"ng-model" => "user.role", "ng-change" => "selectAction()"}
             %option{"ng-repeat" => "role in roles"} {{ role }}
+          .custom-error{"ng-show" => "!validScope.role"} 
+            Invalid:
+            %span{"ng-show" => "!validScope.role"} Please, select a valid role.

@@ -71,6 +71,8 @@ GEM
     multi_json (1.10.1)
     orm_adapter (0.4.0)
     polyglot (0.3.5)
+    rabl (0.10.1)
+      activesupport (>= 2.3.14)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -132,6 +134,7 @@ DEPENDENCIES
   devise
   haml
   jquery-rails
+  rabl
   rails (= 3.2.18)
   sass-rails (~> 3.2.3)
   sqlite3

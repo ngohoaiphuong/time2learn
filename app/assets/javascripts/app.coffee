@@ -1,11 +1,22 @@
 module = [
   'templates',
+  'ngResource'
   'ngRoute',
   'controllers'
+  'angular-flash.service'
+  'angular-flash.flash-alert-directive'
 ]
 
 angular.module 'mainApp', module
-  .config ($routeProvider) ->
+  .config ['$routeProvider', 'flashProvider', '$httpProvider', ($routeProvider, flashProvider, $httpProvider) ->
+    authToken = $("meta[name=\"csrf-token\"]").attr("content")
+    $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
+
+    flashProvider.errorClassnames.push("alert-danger")
+    flashProvider.errorClassnames.push("alert-warning")
+    flashProvider.errorClassnames.push("alert-info")
+    flashProvider.errorClassnames.push("alert-success")
+
     $routeProvider
       .when '/login',
         templateUrl: 'login/login.html'
@@ -15,7 +26,7 @@ angular.module 'mainApp', module
         controller: 'userCtrl'
       .when '/users/new',
         templateUrl: 'users/new.html'
-        controller: 'newCtrl'
+        controller: 'newUserCtrl'
       .when '/users/:id/edit',
         templateUrl: 'users/view.html'
         controller: 'viewCtrl'
@@ -31,4 +42,5 @@ angular.module 'mainApp', module
       .when '/',
         templateUrl: 'home/index.html'
         controller: 'mainCtrl'
+  ]
   

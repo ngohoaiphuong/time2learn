@@ -1,34 +1,46 @@
 %div{ "main-header" => "", "item" => "1" }
+%div{ "flash-message" => ""}
 .container
   .my-control
-    %button.btn.btn-large.btn-default#btnComeBack{ :type => "submit", "ng-click" => "comeBack()" }
-      %span.glyphicon.glyphicon-arrow-left.blue
-      Back
-
-    %button.btn.btn-large.btn-default#btnEditUser{ :type => "submit", "ng-click" => "editUser()" }
-      %span.glyphicon.blue{ "ng-class" => "editClass" }
-      {{ editLabel }}
-
-    %button.btn.btn-large.btn-default#btnSaveUser{ :type => "submit", "ng-click" => "deleteUser()" }
-      %span.glyphicon.blue{ "ng-class" => "deleteClass" }
-      {{ deleteLabel }}
-
     .form.newUser
       %form{:role => "form", :name => "newUserForm"}
+        %button.btn.btn-large.btn-default#btnComeBack{ :type => "button", "ng-click" => "comeBack()" }
+          %span.glyphicon.glyphicon-arrow-left.blue
+          Back
+
+        %button.btn.btn-large.btn-default#btnEditUser{ :type => "button", "ng-click" => "editUser()" }
+          %span.glyphicon.blue{ "ng-class" => "editClass" }
+          {{ editLabel }}
+
+        %button.btn.btn-large.btn-default#btnSaveUser{ :type => "button", "ng-click" => "deleteUser(user.id)" }
+          %span.glyphicon.blue{ "ng-class" => "deleteClass" }
+          {{ deleteLabel }}
+
         .form-group.item
           %label{:for => "email"} Email address
-          %input#email.form-control{:placeholder => "Enter email", :type => "email", "ng-model" => "user.email", "ng-readonly" => "!enableEdit"}/
+          %input#email.form-control{:placeholder => "Enter email", :type => "email", "ng-model" => "user.email", "ng-readonly" => "!enableEdit", :require => "true", "event-valid-email" => "blur"}
+          .custom-error{"ng-show" => "newUserForm.email.$dirty && newUserForm.email.$invalid"} 
+            Invalid:
+            %span{"ng-show" => "newUserForm.email.$error.required"} Email is required.
+            %span{"ng-show" => "newUserForm.email.$error.email"} Please, write a valid email address.
 
         .form-group.item
           %label{:for => "password"} Password
-          %input#password.form-control{:placeholder => "Password", :type => "password", "ng-model" => "user.password", "ng-readonly" => "!enableEdit"}/
+          %input#password.form-control{:placeholder => "Password", :type => "password", "ng-model" => "user.password", "ng-readonly" => "!enableEdit", "ng-keyup" => "onUpdatePassword()"}
 
         .form-group.item{"ng-show" => "enableEdit"}
           %label{:for => "password"} Password
-          %input#password.form-control{:placeholder => "Password", :type => "password", "ng-model" => "user.confirm"}/
+          %input#password.form-control{:placeholder => "Password", :type => "password", "ng-model" => "user.password_confirmation", "ng-keyup" => "onUpdatePassword()"}
+          .custom-error{"ng-show" => "!validScope.password"} 
+            Invalid:
+            %span{"ng-show" => "!validScope.password"} Password is not match.
+
 
         .form-group.item
           %label{:for => "role"} Role
           %input#role.form-control{:placeholder => "Password", :type => "text", "ng-model" => "user.role", "ng-readonly" => "true", "ng-show" => "!enableEdit"}/
-          %select.form-control{"ng-model" => "user.role", "ng-show" => "enableEdit"}
+          %select.form-control{"ng-model" => "user.role", "ng-show" => "enableEdit", "ng-change" => "selectAction()"}
             %option{"ng-repeat" => "role in roles"} {{ role }}
+          .custom-error{"ng-show" => "!validScope.role"} 
+            Invalid:
+            %span{"ng-show" => "!validScope.role"} Please, select a valid role.

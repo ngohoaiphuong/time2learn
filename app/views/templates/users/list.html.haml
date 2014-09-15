@@ -12,25 +12,11 @@
             %th Email
             %th Role
             %th Actions
-        %tbody
+        %tbody{"ng-repeat" => "user in users"}
           %tr
-            %th John Doe
-            %th johndoe@example.com
-            %th Student
+            %th {{ user.user.username }}
+            %th {{ user.user.email }}
+            %th {{ user.user.role }}
             %th 
-              %a{ :href => '#/users/1/edit' } Edit
-              %a{ :href => '/edit' } Delete            
-          %tr
-            %th John Doe
-            %th johndoe@example.com
-            %th Student
-            %th 
-              %a{ :href => '/edit' } Edit
-              %a{ :href => '/edit' } Delete            
-          %tr
-            %th John Doe
-            %th johndoe@example.com
-            %th Student
-            %th 
-              %a{ :href => '/edit' } Edit
-              %a{ :href => '/edit' } Delete                                    
+              %a{ "ng-href" => '#/users/{{ user.user.id }}/edit' } Edit
+              %a{ "ng-click" => 'deleteUser(user.user.id)' } Delete            
